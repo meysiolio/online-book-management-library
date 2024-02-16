@@ -16,8 +16,9 @@ def main():
         if choice == '1':
             title = input("Enter book title: ")
             author = input("Enter author name: ")
-            library.add_book(title, author)
-            print("Book added successfully!")
+            quantity = int(input("Enter quantity of books: "))
+            library.add_book(title, author, quantity)
+            print("Book(s) added successfully!")
 
         elif choice == '2':
             library.display_books()
