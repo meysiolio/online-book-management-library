@@ -17,7 +17,7 @@ def main():
             title = input("Enter book title: ")
             author = input("Enter author name: ")
             quantity = int(input("Enter quantity of books: "))
-            library.add_book(title, author, quantity)
+            library.add_books(title, author, quantity)
             print("Book(s) added successfully!")
 
         elif choice == '2':
@@ -25,11 +25,11 @@ def main():
 
         elif choice == '3':
             title = input("Enter the title of the book you want to borrow: ")
-            library.borrow_book(title)
+            library.borrow_books(title)
 
         elif choice == '4':
             title = input("Enter the title of the book you want to return: ")
-            library.return_book(title)
+            library.return_books(title)
 
         elif choice == '5':
             print("Thank you for using the online Library System. Goodbye!")
