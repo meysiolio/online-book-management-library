@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .btn {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Library Management System</h1>
+        <button class="btn" onclick="displayBooks()">Display All Books</button><br>
+        <button class="btn" onclick="showReturnForm()">Return a Book</button><br>
+        <button class="btn" onclick="showBorrowForm()">Borrow a Book</button><br>
+        <button class="btn" onclick="goToAddBookPage()">Add Books</button><br>
+    </div>
+
+    <script>
+        function displayBooks() {
+            window.location.href = "/display_book";
+        }
+
+        function showReturnForm() {
+            window.location.href = "/return_book_form";
+        }
+
+        function showBorrowForm() {
+            window.location.href = "/borrow_book_form";
+        }
+
+        function goToAddBookPage() {
+            window.location.href = "/add_book_form";
+        }
+    </script>
+</body>
+</html>

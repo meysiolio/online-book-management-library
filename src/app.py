@@ -1,9 +1,16 @@
-from flask import Flask, request, jsonify
-import sqlite3
+from flask import Flask, request, jsonify, render_template
 from library import Library
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='template')
 library = Library()
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/add_book_form')
+def add_book_form():
+    return render_template('add_book_form.html')
 
 @app.route('/add_book', methods=['POST'])
 def add_book():

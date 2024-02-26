@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+</head>
+<body>
+    <h1>Add Book</h1>
+    <form id="addBookForm">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author"><br>
+        <label for="quantity">Quantity:</label><br>
+        <input type="number" id="quantity" name="quantity" value="1"><br>
+        <button type="submit">Add Book</button>
+    </form>
+
+    <script>
+        document.getElementById("addBookForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const title = document.getElementById("title").value;
+            const author = document.getElementById("author").value;
+            const quantity = document.getElementById("quantity").value;
+
+            try {
+                const response = await fetch("/add_book", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        author: author,
+                        quantity: quantity
+                    })
+                });
+
+                const responseData = await response.json();
+                alert(responseData.message);
+                // Redirect to main page or do something else after adding the book
+                window.location.href = "/";
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>
