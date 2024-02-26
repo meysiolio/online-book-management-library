@@ -6,7 +6,7 @@ class Library:
         self.db_name = db_name
         self.connection = None
         try:
-            self.connection = sqlite3.connect(self.db_name)
+            self.connection = sqlite3.connect(self.db_name, check_same_thread=False)
             self.create_table()
         except sqlite3.Error as e:
             print(f"Error connecting to database: {e}")
