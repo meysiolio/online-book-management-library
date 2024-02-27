@@ -20,6 +20,10 @@ def add_book():
     quantity = data.get('quantity', 1)
     library.add_books(title, author, quantity)
     return jsonify({"message": "Book added successfully"})
+
+@app.route('/borrow_book_form')
+def borrow_book_form():
+    return render_template('borrow_book_form.html')
     
 @app.route('/borrow_book', methods=['POST'])
 def borrow_book():
@@ -27,6 +31,10 @@ def borrow_book():
     title = data.get('title')
     library.borrow_books(title)
     return jsonify({"message": "Book borrowed successfully"})
+
+@app.route('/return_book_form')
+def return_book_form():
+    return render_template('return_book_form.html')
 
 @app.route('/return_book', methods=['POST'])
 def return_book():
@@ -41,4 +49,4 @@ def display_book():
     return jsonify({"message": "All books displayed"})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')

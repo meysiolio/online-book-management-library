@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Book</title>
+</head>
+<body>
+    <h1>Borrow Book</h1>
+    <form id="borrowBookForm">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <button type="submit">Borrow Book</button>
+    </form>
+
+    <script>
+        document.getElementById("borrowBookForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const title = document.getElementById("title").value;
+
+            try {
+                const response = await fetch("/borrow_book", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        title: title
+                    })
+                });
+
+                const responseData = await response.json();
+                alert(responseData.message);
+                // Redirect to main page or do something else after borrowing the book
+                window.location.href = "/";
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>
