@@ -37,7 +37,7 @@ class Library:
             self.connection.commit()
             message = f"{title} added to the list of books successfully."
         except sqlite3.Error as e:
-            print(f"Error adding books: {e}")
+            # print(f"Error adding books: {e}")
             message = f"Error adding books: {e}"
         return message
 
@@ -73,16 +73,16 @@ class Library:
                     query = "UPDATE books SET available_quantity = ? WHERE id = ?"
                     self.connection.execute(query, (available_quantity, book_id))
                     self.connection.commit()
-                    print(f"You have borrowed {title}")
+                    # print(f"You have borrowed {title}")
                     message = f"You have borrowed {title}"
                 else:
-                    print("Sorry, the book is not available.")
+                    # print("Sorry, the book is not available.")
                     message = "Sorry, the book is not available."
             else:
-                print("Sorry, the book doesn't exist.")
+                # print("Sorry, the book doesn't exist.")
                 message = "Sorry, the book doesn't exist."
         except sqlite3.Error as e:
-            print(f"Error borrowing books: {e}")
+            # print(f"Error borrowing books: {e}")
             message = f"Error borrowing books: {e}"
         return message
 
@@ -98,15 +98,15 @@ class Library:
                     query = "UPDATE books SET available_quantity = ? WHERE id = ?"
                     self.connection.execute(query, (available_quantity,book_id))
                     self.connection.commit()
-                    print(f"Thank you for returning {title}")
+                    # print(f"Thank you for returning {title}")
                     message = f"Thank you for returning {title}"
                 else:
-                    print("This book was not borrowed from this library.")
+                    # print("This book was not borrowed from this library.")
                     message = "This book was not borrowed from this library."
             else:
-                print("Sorry, the book doesn't exist.")
+                # print("Sorry, the book doesn't exist.")
                 message = "Sorry, the book doesn't exist."
         except sqlite3.Error as e:
-            print(f"Error returning books: {e}")
+            # print(f"Error returning books: {e}")
             message = f"Error returning books: {e}"
         return message
