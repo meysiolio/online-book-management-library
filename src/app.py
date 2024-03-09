@@ -1,10 +1,11 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, Response
 from library import Library
 
-app = Flask(__name__, template_folder='template')
+app = Flask(__name__, template_folder='templates')
 library = Library()
 
 @app.route('/')
+@app.route('/index.html')
 def index():
     return render_template('index.html')
 
@@ -45,8 +46,17 @@ def return_book():
 
 @app.route('/display_book', methods=['GET'])
 def display_book():
-    library.display_books()
-    return jsonify({"message": "All books displayed"})
+    cursor = library.display_books2()
+    if cursor:
+        def generate():
+            yield '<ul>'
+            for row in cursor:
+                title, author, quantity, available_quantity = row
+                yield f'<h2>{title} by {author} - Available: {available_quantity}/{quantity}</h2>'
+            yield '</ul>'
+        return Response(generate(), content_type='text/html')
+    else:
+        return "Error loading books", 500
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')

@@ -49,6 +49,15 @@ class Library:
         except sqlite3.Error as e:
             print(f"Error loading books: {e}")
             
+    def display_books2(self):
+        try:
+            query = "SELECT title, author, quantity, available_quantity FROM books"
+            cursor = self.connection.execute(query)
+            return cursor
+        except sqlite3.Error as e:
+            print(f"Error loading books: {e}")
+            return None
+            
     def borrow_books(self, title):
         try:
             query = "SELECT id, available_quantity FROM books WHERE title = ?"
