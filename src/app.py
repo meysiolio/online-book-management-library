@@ -19,8 +19,8 @@ def add_book():
     title = data.get('title')
     author = data.get('author')
     quantity = data.get('quantity', 1)
-    library.add_books(title, author, quantity)
-    return jsonify({"message": "Book added successfully"})
+    message = library.add_books(title, author, quantity)
+    return jsonify({"message": message})
 
 @app.route('/borrow_book_form')
 def borrow_book_form():
@@ -30,8 +30,8 @@ def borrow_book_form():
 def borrow_book():
     data = request.get_json()
     title = data.get('title')
-    library.borrow_books(title)
-    return jsonify({"message": "Book borrowed successfully"})
+    message = library.borrow_books(title)
+    return jsonify({"message": message})
 
 @app.route('/return_book_form')
 def return_book_form():
@@ -41,8 +41,8 @@ def return_book_form():
 def return_book():
     data = request.get_json()
     title = data.get('title')
-    library.return_books(title)
-    return jsonify({"message": "Book returned successfully"})
+    message = library.return_books(title)
+    return jsonify({"message": message})
 
 @app.route('/display_book', methods=['GET'])
 def display_book():
